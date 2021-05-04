@@ -8,3 +8,15 @@ before_install:
 
 script:
   - docker run -e CI=true kendojaa/kakmakmak npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-2"
+  app: "kakmakmak"
+  env: "Kakmakmak-env"
+  bucket_name: "elasticbeanstalk-us-east-2-214730289814"
+  bucket_path: "kakmakmak"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
